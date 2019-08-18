@@ -1,0 +1,55 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="page_title">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-offset-4">
+                <h1>Testimonials</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main_content">
+  <div class="container">
+
+<div class="row">
+    <div class="col-md-12">
+    <?php if(sizeOf($testimonialLists)>0): ?>
+    <?php foreach($testimonialLists as $testimonial): ?>
+    <div class="testiminial-block">
+      <div class="row">
+        <div class="col-md-2 col-sm-2">
+          <?php if($testimonial->image != '' && File::exists(TESTIMONIAL_IMAGE_ROOT_PATH.$testimonial->image)): ?>
+          <img src="<?php echo TESTIMONIAL_IMAGE_URL.$testimonial->image; ?>" width="80" height="80"  alt=""/>
+          <?php else: ?>
+          <?php echo HTML::image('img/noimg.png', '', array('width' => '80', 'height' => '80' )); ?>
+
+          <?php endif; ?>
+          </div>
+        <div class="col-md-8 col-sm-8 testimonial-content">
+          <h3><?php echo $testimonial->title; ?></h3>
+          <p><?php echo $testimonial->comment; ?></p>
+          <div class="testimonial-author">
+            <?php echo $testimonial->client_name; ?> <span>(<?php echo $testimonial->client_designation; ?>)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <?php endforeach; ?>
+    <?php else: ?>
+    <h3 style="text-align:center">No Testimonial Found</h3>
+    <?php endif; ?>
+    
+    
+    
+
+  </div>    
+</div>
+</div>
+
+</div>
+<?php echo $__env->make('layouts.main.footer_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.inner', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

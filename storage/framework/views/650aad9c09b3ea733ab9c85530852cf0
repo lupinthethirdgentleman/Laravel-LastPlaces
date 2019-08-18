@@ -1,0 +1,167 @@
+<?php $__env->startSection('content'); ?>
+<!-- CKeditor start here-->
+
+<?php echo HTML::style('css/admin/custom_li_bootstrap.css'); ?>
+
+<?php echo HTML::script('js/bootstrap.js'); ?>
+
+<?php echo HTML::script('js/admin/ckeditor/ckeditor.js'); ?>
+
+
+<!-- CKeditor ends-->
+
+<div class="mws-panel grid_8">
+	<div class="mws-panel-header" style="height: 46px;">
+		<span> <?php echo trans("Add New DA/HCP"); ?> </span>
+		<a href="<?php echo URL::to('admin/list-hcp'); ?>" class="btn btn-success btn-small align"><?php echo trans("messages.system_management.back_to_cms"); ?> </a>
+	</div>
+	
+	<?php echo Form::open(['role' => 'form','url' => 'admin/save-hcp','class' => 'mws-form', 'files' => true]); ?>
+
+	<div class="mws-panel-body no-padding tab-content"> 
+		<div class="mws-form-inline">
+			<div class="mws-form-row ">
+				<?php echo HTML::decode( Form::label('last_name', trans("Company Name").'<span class="requireRed"> * </span>', ['class' => 'mws-form-label'])); ?>
+
+				<div class="mws-form-item">
+						<?php echo Form::select(
+							 'company_name',
+							 [null => 'Please Select Company Name']+ $companyList,
+							 '',
+							 ['class'=>'small','id'=>'company_id']
+							); ?>						<div class="error-message help-inline">
+						<?php echo $errors->first('company_name'); ?>
+					</div>
+				</div>
+			</div>
+			<div class="mws-form-row ">
+				<?php echo HTML::decode( Form::label('last_name', trans("Comapny Location").'<span class="requireRed"> * </span>', ['class' => 'mws-form-label'])); ?>
+
+					<div class="mws-form-item">
+						<?php echo Form::select(
+							 'company_location',
+							 [null => 'Please Select Company Location'],
+							 '',
+							 ['class'=>'small','id'=>'company_location']
+							); ?>						
+					<div class="error-message help-inline">
+						<?php echo $errors->first('company_location'); ?>
+					</div>
+				</div>
+			</div>
+			<div class="mws-form-row ">
+				<?php echo HTML::decode( Form::label('first_name', trans("First Name").'<span class="requireRed"> * </span>', ['class' => 'mws-form-label'])); ?>
+
+				<div class="mws-form-item">
+					<?php echo Form::text('first_name','',['class'=>'small']); ?>
+
+					<div class="error-message help-inline">
+						<?php echo $errors->first('first_name'); ?>
+					</div>
+				</div>
+			</div>
+			<div class="mws-form-row ">
+				<?php echo HTML::decode( Form::label('middle_name', trans("Middle  Name").'<span class="requireRed">  </span>', ['class' => 'mws-form-label'])); ?>
+
+				<div class="mws-form-item">
+					<?php echo Form::text('middle_name','',['class'=>'small']); ?>
+
+					<div class="error-message help-inline">
+						<?php echo $errors->first('middle_name'); ?>
+					</div>
+				</div>
+			</div>
+			<div class="mws-form-row ">
+				<?php echo HTML::decode( Form::label('last_name', trans("Last Name").'<span class="requireRed"> * </span>', ['class' => 'mws-form-label'])); ?>
+
+				<div class="mws-form-item">
+					<?php echo Form::text('last_name','',['class'=>'small']); ?>
+
+					<div class="error-message help-inline">
+						<?php echo $errors->first('last_name'); ?>
+					</div>
+				</div>
+			</div>
+			<div class="mws-form-row ">
+				<?php echo HTML::decode( Form::label('profession', trans("Profession").'<span class="requireRed"> * </span>', ['class' => 'mws-form-label'])); ?>
+
+				<div class="mws-form-item">
+					<?php echo Form::text('profession','',['class'=>'small']); ?>
+
+					<div class="error-message help-inline">
+						<?php echo $errors->first('profession'); ?>
+					</div>
+				</div>
+			</div>
+				<div class="mws-form-row ">
+					<?php echo HTML::decode( Form::label('image', 'Image <span class="requireRed"></span>', ['class' => 'mws-form-label floatleft'])); ?>
+
+						<!-- Toll tip div start here -->
+						<span class='tooltipHelp' title="" data-html="true" data-toggle="tooltip"  data-original-title="<?php echo "The attachment must be a file of type:".IMAGE_EXTENSION; ?>" style="cursor:pointer;">
+							<i class="fa fa-question-circle fa-2x"> </i>
+						</span>
+						<!-- Toll tip div end here -->
+						<div class="mws-form-item">
+							<?php echo Form::file('image'); ?>
+
+						
+							<div class="error-message help-inline">
+								<?php echo $errors->first('image'); ?>
+							</div>
+						</div>
+				</div>
+		</div>
+		<div class="mws-button-row">
+			<div class="input" >
+				<input type="submit" value="<?php echo trans('messages.system_management.save'); ?>" class="btn btn-danger">
+				<a href="<?php echo URL::to('admin/list-hcp/add-hcp'); ?>" class="btn primary"><i class=\"icon-refresh\"></i> <?php echo trans('messages.system_management.reset'); ?></a>
+			</div>
+		</div>
+	</div>
+	<?php echo Form::close(); ?> 
+</div>
+
+<script>
+	$(document).ready(function(){
+
+      	$('#company_id').on('change', function() {
+			var company_id = $(this).val();
+			$.ajax({
+				 url: '<?php echo url('admin/list-hcp/getlocation'); ?>/'+company_id,
+				 type: "get",
+				 dataType: "json",
+                success:function(data) {
+                    $('select[name="company_location"]').empty();
+                    $('select[name="company_location"]').append('<option value="">Please Select Company Location');
+                    $.each(data, function(key, value) {
+
+                        $('select[name="company_location"]').append('<option value="'+ key +'">'+ value +'</option>');
+                    });
+                }
+			})	
+		});
+      	   /* localStorage.setItem('todos', $('#company_id').val());
+      	    test = localStorage.getItem('todos'); 
+      	   // alert(test);
+      	    $('#company_id').val(test);*/
+  	 	var company_id = $('#company_id').val();
+		$.ajax({
+			 url: '<?php echo url('admin/list-hcp/getlocation'); ?>/'+company_id,
+			 type: "get",
+			 dataType: "json",
+            success:function(data) {
+                $('select[name="company_location"]').empty();
+                $('select[name="company_location"]').append('<option value="">Please Select Company Location');
+                $.each(data, function(key, value) {
+
+                    $('select[name="company_location"]').append('<option value="'+ key +'" selected="selected">'+ value +'</option>');
+                });
+            }
+		})	
+	});
+</script>
+
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

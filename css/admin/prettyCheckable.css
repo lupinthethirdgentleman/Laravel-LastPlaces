@@ -1,0 +1,191 @@
+@import 'compass';
+
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {clear: both;}
+
+.clearfix {*zoom: 1;}
+
+$sprite: sprite-map("sprites.png", $layout: "horizontal");
+
+.prettycheckbox,
+.prettyradio {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+
+    > a {
+        @include sprite-dimensions($sprite, 'A-checkbox');
+        display: block;
+        float: left;
+        cursor: pointer;
+        margin: 0;
+        background: $sprite;
+
+        &:focus {
+          outline: 0 none;
+        }
+    }
+
+    label {
+        display: block;
+        float: left;
+        margin: 6px 5px;
+        cursor: pointer;
+    }
+
+    a,
+    label {
+        &.disabled {
+            cursor:not-allowed;
+        }
+    }
+}
+
+.prettycheckbox {
+    > a {
+        background-position: sprite-position($sprite, 'A-checkbox');
+
+        &:focus {
+            background-position: sprite-position($sprite, 'B-checkbox-focus');
+        }
+
+        &.checked {
+            background-position: sprite-position($sprite, 'C-checkbox-checked');
+
+            &:focus {
+                background-position: sprite-position($sprite, 'D-checkbox-checked-focus');
+            }
+
+            &.disabled {
+                background-position: sprite-position($sprite, 'F-checkbox-checked-disabled');
+            }
+        }
+
+        &.disabled {
+          background-position: sprite-position($sprite, 'E-checkbox-disabled');
+        }
+    }
+}
+
+.prettyradio {
+    > a {
+        background-position: sprite-position($sprite, 'G-radio');
+
+        &:focus {
+            background-position: sprite-position($sprite, 'H-radio-focus');
+        }
+
+        &.checked {
+            background-position: sprite-position($sprite, 'I-radio-checked');
+
+            &:focus {
+                background-position: sprite-position($sprite, 'J-radio-checked-focus');
+            }
+
+            &.disabled {
+                background-position: sprite-position($sprite, 'L-radio-checked-disabled');
+            }
+        }
+
+        &.disabled {
+          background-position: sprite-position($sprite, 'K-radio-disabled');
+        }
+    }
+}
+
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+}
+.prettycheckbox, .prettyradio {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+}
+.prettycheckbox a, .prettyradio a {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("../img/sprites-sfa68604977.png");
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 30px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    width: 30px;
+}
+.prettycheckbox a:focus, .prettyradio a:focus {
+    outline-color: -moz-use-text-color;
+    outline-style: none;
+    outline-width: 0;
+}
+.prettycheckbox label, .prettyradio label {
+    cursor: pointer;
+    display: block;
+    float: left;
+    margin-bottom: 6px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 6px;
+}
+.prettycheckbox a.disabled, .prettycheckbox label.disabled, .prettyradio a.disabled, .prettyradio label.disabled {
+    cursor: not-allowed;
+}
+.prettycheckbox a {
+    background-position: 0 0;
+}
+.prettycheckbox a:focus {
+    background-position: -30px 0;
+}
+.prettycheckbox a.checked {
+    background-position: -60px 0;
+}
+.prettycheckbox a.checked:focus {
+    background-position: -90px 0;
+}
+.prettycheckbox a.checked.disabled {
+    background-position: -150px 0;
+}
+.prettycheckbox a.disabled {
+    background-position: -120px 0;
+}
+.prettyradio a {
+    background-position: -180px 0;
+}
+.prettyradio a:focus {
+    background-position: -210px 0;
+}
+.prettyradio a.checked {
+    background-position: -240px 0;
+}
+.prettyradio a.checked:focus {
+    background-position: -270px 0;
+}
+.prettyradio a.checked.disabled {
+    background-position: -330px 0;
+}
+.prettyradio a.disabled {
+    background-position: -300px 0;
+}

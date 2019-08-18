@@ -1,0 +1,154 @@
+
+
+
+
+<?php $__env->startSection('content'); ?>
+
+
+
+<div class="main_content">
+	<div class="container">
+        <div class="page_title">
+            <h1>Log In</h1>
+        </div>
+        <div class="row">
+        	<div class="col-sm-6 col-lg-4"  id="scroll_error_login">
+            	<div class="login_form gray_box">
+                	<h2>Already have an account <span>Login Now</span></h2>
+                    <div id="error_div_login" style="display:none">
+                    </div>
+
+                    <?php echo Form::open(['role' => 'form','class'=>'form','snovalidate'=>'novalidate','id'=>'login_form','route' =>'login']); ?>
+
+                      <div class="form-group">
+
+                        <?php echo Form::email(
+                            'email', 
+                            null,
+                            ['class'=>'form-control','tabindex'=>"1",'placeholder'=>'Email', 'required','data-errormessage-type-mismatch'=>'Invalid Email','data-errormessage-value-missing' => 'Email is required' ]
+                            ); ?>
+
+                      </div>
+                      <div class="form-group">
+                        <?php echo Form::password(
+                                'password', 
+                                ['class'=>'form-control','tabindex'=>"2",'placeholder'=>'Password','pattern'=>'.{6,}','data-errormessage-pattern-mismatch' => 'Invalid Password', 'required','data-errormessage-value-missing' => 'Password is required']
+                                ); ?>
+
+                      </div>
+                      <?php
+                            $attributes = [
+                                'data-theme' => 'dark',
+                                'data-type' => 'audio',
+                            ];
+                       ?>
+                      <?php echo Form::captcha($attributes); ?>
+
+                      <div class="checkbox">
+                      
+
+                        <label>
+                         <input type="checkbox" name="remember_me" id="confrm">  Remember me
+                        </label>
+                      </div>
+
+
+                      <?php echo Form::button(
+                                'Login',
+                                ['class'=>'btn btn-success','id'=>'submit_login','type'=>'submit']
+                                ); ?>  
+
+                        <a href="<?php echo route('front-forgot-password'); ?>" class="fget_pass">Forget Password</a>    
+                    </form>
+                    <!-- <div class="border_middle text-center">
+                    	<span>OR</span>
+                    </div>
+                    <div class="facebook_login"><a href="#"><img class="img-responsive" src="<?php echo WEBSITE_IMG_URL; ?>/fb_login.png" alt=""/></a></div>
+                    <div class="twitter_login"><a href="#"><img class="img-responsive" src="<?php echo WEBSITE_IMG_URL; ?>/twitter_btn.png" alt=""/></a></div> -->
+            	</div>
+            </div>
+        	<div class="col-lg-4 visible-lg">
+            	<div class="login_logo">
+       	    		<img src="<?php echo WEBSITE_IMG_URL; ?>/login_logo.png" alt=""/>
+                </div>
+            </div>
+        	<div class="col-sm-6 col-lg-4">
+            	<div class="login_form">
+                	<h2>Create an account with us and <span>you will be able to</span></h2>
+                    <ul class="bullet_list">
+                    	<li><span>See comment</span> of others.</li>
+                    	<li><span>Post comment</span> on peoples.</li>
+                    	<li>Lorem sit amit <span>amnaahse mardora</span>.</li>
+                    	<li>Lorem <span>amit amnaahse</span> mardora.</li>
+                    	<li><span>Lorem amit</span> ipsum sit.</li>
+                    	<li>Lorem ipsum <span>sit amit</span> amnaahse.</li>
+                    </ul>
+                    <a class="btn btn-warning btn-register" href="<?php echo route('front-sign-up'); ?>">Register Now</a>
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php echo $__env->make('layouts.main.footer_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+<script type="text/javascript">
+	
+
+		
+		var options = {
+			beforeSubmit: function(){ 
+				
+				$('#password_error').hide();
+				$('#email_error').hide();
+				$("#submit_login").button('loading');
+				$("#overlay").show();
+			},
+			success:function(data){
+					
+				$("#submit_login").button('reset');
+				$("#overlay").hide();
+				
+				if(data.success==1){
+					window.location.href	=	data.redirect;
+				}else{
+					
+					
+					error_msg	=	'<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>'+data.errors+'</div>';
+					$('#error_div_login').hide();
+					$('#error_div_login').html(error_msg);
+					
+					// top position relative to the document
+				//	var pos = $("#scroll_error_signup").offset().top;
+	
+					// animated top scrolling
+				//	$('body, html').animate({scrollTop: 0});
+					$('#error_div_login').show('slow');
+					
+					
+					
+				}
+				return false;
+			},
+			resetForm:false
+		}; 
+		// pass options to ajaxForm 
+		$('#login_form').ajaxForm(options);
+
+	
+	$(document).ready(function(){
+
+
+
+	});
+
+
+
+</script>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.inner', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

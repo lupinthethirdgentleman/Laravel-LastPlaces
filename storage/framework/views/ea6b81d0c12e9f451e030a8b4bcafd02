@@ -1,0 +1,140 @@
+<?php $__env->startSection('content'); ?>
+
+<!-- CKeditor start here-->
+<?php echo HTML::style('css/admin/custom_li_bootstrap.css'); ?>
+
+<?php echo HTML::script('js/bootstrap.js'); ?>
+
+<?php echo HTML::script('js/admin/ckeditor/ckeditor.js'); ?>
+
+
+<div class="mws-panel grid_8">
+
+	<div class="mws-panel-header" style="height: 46px;">
+		<span> <?php echo trans("messages.$modelName.table_heading_edit"); ?> </span>
+		<a href='<?php echo route("$modelName.index"); ?>' class="btn btn-success btn-small align"><?php echo trans("messages.global.back"); ?> </a>
+	</div>
+
+		<?php if(count($languages) > 1): ?>
+		<div  class="default_language_color">
+					<?php echo Config::get('default_language.message'); ?>
+
+				</div>
+				<div class="wizard-nav wizard-nav-horizontal">
+					<ul class="nav nav-tabs">
+						<?php foreach($languages as $value): ?>
+						<?php $i = $value->id; ?>
+							<li class=" <?php echo ($i ==  $language_code )?'active':''; ?>">
+								<a data-toggle="tab" href="#<?php echo $i; ?>div">
+									<?php echo $value -> title; ?>
+
+								</a>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			<?php endif; ?>
+
+		<?php echo Form::open(['role' => 'form','url' =>  route("$modelName.edit","$region->id"),'class' => 'mws-form']); ?>
+
+		
+	<div class="mws-panel-body no-padding">
+		<?php if(count($languages) > 1): ?>
+			<div class="text-right mws-form-item" style="margin-right:20px; padding-top:10px; font-size: 12px;">
+				<b><?php echo trans("messages.global.language_field"); ?></b>
+			</div>
+		<?php endif; ?>
+
+		<div class="mws-form-inline">
+			
+		</div>
+	</div>
+
+		<div class="mws-panel-body no-padding tab-content"> 
+			<?php foreach($languages as $value): ?>
+					<?php $i = $value->id; ?>
+					<div id="<?php echo $i; ?>div" class="tab-pane <?php echo ($i ==  $language_code )?'active':''; ?> ">
+						<div class="mws-form-inline">
+
+
+							<div class="mws-form-row">
+								<?php echo HTML::decode( Form::label($i.'.name', trans("messages.$modelName.region_name").'<span class="requireRed"> * </span>', ['class' => 'mws-form-label'])); ?>
+
+							
+								<div class="mws-form-item">
+			<?php echo Form::text("data[$i][".'name'."]",isset($multiLanguage[$i]['name'])?$multiLanguage[$i]['name']:'', ['class' => 'small']); ?>									<div class="error-message help-inline">
+										<?php echo ($i ==  $language_code ) ? $errors->first('name') : ''; ?>
+										<?php if($errors->any()): ?>
+											<?php echo $errors->first(); ?>										
+										<?php endif; ?>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="mws-form-row ">
+								<?php echo HTML::decode( Form::label($i.'.heading', trans("messages.$modelName.region_heading").'<span class="requireRed"> * </span>', ['class' => 'mws-form-label'])); ?>
+
+								
+								<div class="mws-form-item">
+									<?php echo Form::text("data[$i][".'heading'."]",isset($multiLanguage[$i]['heading'])?$multiLanguage[$i]['heading']:'', ['class' => 'small']); ?>
+
+									<div class="error-message help-inline">
+										<?php echo ($i ==  $language_code ) ? $errors->first('heading') : ''; ?>
+									</div>
+								</div>
+							</div>
+
+
+
+							<div class="mws-form-row ">
+						<?php echo HTML::decode( Form::label($i.'_body', trans("messages.$modelName.region_introduction").'<span class="requireRed"> * </span>', ['class' => 'mws-form-label'])); ?>
+
+						
+						<div class="mws-form-item">
+							<?php echo Form::textarea("data[$i][".'introduction'."]",isset($multiLanguage[$i]['introduction'])?$multiLanguage[$i]['introduction']:'', ['class' => 'small','id' => 'body_'.$i]); ?>
+
+							<span class="error-message help-inline">
+								<?php echo ($i ==  $language_code ) ? $errors->first('body') : ''; ?>
+							</span>
+						</div>
+						<script type="text/javascript">
+						/* For CKEDITOR */
+							
+							CKEDITOR.replace( <?php echo 'body_'.$i; ?>,
+							{
+								height: 350,
+								width: 600,
+								filebrowserUploadUrl : '<?php echo URL::to('base/uploder'); ?>',
+								filebrowserImageWindowWidth : '640',
+								filebrowserImageWindowHeight : '480',
+								enterMode : CKEDITOR.ENTER_BR
+							});
+								
+						</script>
+					</div>
+
+
+						</div>
+
+					</div>
+
+				<?php endforeach; ?>
+			<div class="mws-button-row">
+			<div class="input" >
+				<input type="submit" value="<?php echo trans('messages.global.save'); ?>" class="btn btn-danger">
+				<a  href='<?php echo route("$modelName.edit","$region->id"); ?>' class="btn primary"><i class=\"icon-refresh\"></i> <?php echo trans('messages.global.reset'); ?></a>
+			</div>
+		</div>
+		</div>
+
+
+
+		<?php echo Form::close(); ?> 
+
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

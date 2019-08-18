@@ -1,0 +1,314 @@
+/*-------
+Theme Name: Last Places DMC
+Description: This theme is designed and developed for personal use. Any other individual or group is not allowed to use it without the proper authoratization of Last Places DMC Group.
+Author: Manish Bajpai
+Author URL: https://codexious.com
+Document Name: Primary Stylesheet
+------*/
+
+
+@import url('https://fonts.googleapis.com/css?family=Barlow:300,300i,400,400i,500,500i,600,700,800,900|Open+Sans:400,400i,600,700,700i,800|Poppins:300,400,500,700,700i,800,900&display=swap');
+
+body{
+	font-family: Barlow;
+}
+a{
+	text-decoration: none;
+}
+.spr{
+	padding-top: 3%;
+}
+
+header{
+	background: #4b5320;
+	padding: 10px 0;
+}
+header .logo{
+	display: block;
+	position: relative;
+}
+header .contact-info{
+	display: block;
+	margin: auto;
+	position: relative;
+}
+header .contact-info p{
+	font-size: 22px;
+	line-height: 24px;
+}
+header .contact-info p a{
+	color: #8ba815;
+	text-decoration: none;
+}
+header .contact-info p a:hover{
+	color: #fff;
+	text-decoration: none;
+}
+
+#sites{
+	background: url( ../img/content-bg.jpg) no-repeat;
+	background-size: cover;
+	background-position: center;
+	padding: 60px 0;
+}
+#sites h1{
+	font-family: Poppins;
+	font-size: 55px;
+	font-weight: 800;
+	text-align: center;
+	color: #4b5320;
+	text-shadow: 4px 4px 14px rgba(0,0,0,0.18);
+}
+#sites p{
+	color: #344233;
+    font-family: "Poppins", Sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+#sites .sites-blocks{
+	margin-top: 20px;
+	display: block;
+	position: relative;
+	top:0;
+	left:0;
+	width:100%;
+	margin: auto;
+	height: 440px;
+	
+}
+
+#sites .sites-blocks .overlay{
+	background-color: rgba(0,0,0,0.49);
+	position: absolute;
+	content:"";
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	transition: ease-in 0.5s all 0s;
+	text-align: center;
+	color: #fff;
+}
+
+#sites .sites-blocks .overlay:hover  {
+	background-color: rgba(75,83,32,0.92);
+	position: absolute;
+	content:"";
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	transition: ease-in 0.5s all 0s;
+	text-align: center;
+	color: #fff;
+}
+
+#sites .sites-blocks .overlay h3{
+	font-family: Poppins;
+	font-size: 30px;
+	font-weight: 800;	
+	bottom: 5%;
+	left: 30%;
+	display: block;
+	margin: auto;
+	position: absolute;
+	text-align: center;
+}
+
+#sites .sites-blocks .overlay h3 a{
+	color: #fff;
+	text-decoration: none;
+}
+
+footer{
+	display: block;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: relative;
+}
+footer .widget-area{
+	background: #4b5320;
+	padding: 40px 0;
+	width: 100%;
+}
+footer .widget-area h3{
+	font-family: "Barlow", Sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+	color: #fff;
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+}
+footer .widget-area h4{
+	font-family: "Barlow", Sans-serif;
+    font-size: 47px;
+    font-weight: 700;
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+}
+footer .widget-area h4 a{
+	color: #8ba815;
+	text-decoration: none;
+}
+footer .widget-area ul{
+	display: inline-block;
+	list-style: none;
+}
+footer .widget-area ul li{
+	display: inline-block;
+	list-style: none;
+}
+footer .widget-area ul li .social-icons{
+	background: #7A950E;
+	display: block;
+	position: relative;
+	width: 40px;
+	height: 40px;
+	padding: 4px 8px;
+	border-radius: 100px;
+	line-height: 30px;
+	font-size: 20px;
+	text-align: center;
+	color: #fff;
+	margin: 15px 5px;
+	transition: ease 0.6s all 0s;
+}
+footer .widget-area ul li .social-icons:hover{
+	background: #333;
+}
+
+footer .copyright{
+	background: #424c20;
+	color: rgba(255,255,255,0.35);
+	font-family: "Barlow", Sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 0.4em;
+	padding: 25px;
+	width: 100%;
+	display: block;
+	position: relative;
+}
+
+/*-----Moble CSS-----*/
+
+@media only screen and  (max-width:740px){
+header{
+	background: #4b5320;
+	padding: 10px 0;
+}
+header .logo{
+	display: block;
+	position: relative;
+}
+header .logo img{
+	display: block;
+	margin: auto;
+	width: 180px;
+	position: relative;
+}
+header .contact-info{
+	display: block;
+	margin: auto;
+	position: relative;
+}
+header .contact-info p{
+	margin-top: 10px;
+	font-size: 16px;
+	line-height: 18px;
+	text-align: center;
+}
+	.gap{
+		margin: 10px 0;
+	}
+	
+#sites{
+	background: url( ../img/content-bg.jpg) no-repeat;
+	background-size: cover;
+	background-position: center;
+	padding: 60px 0;
+}
+#sites h1{
+	font-family: Poppins;
+	font-size: 35px;
+	font-weight: 800;
+	text-align: center;
+	color: #4b5320;
+	text-shadow: 4px 4px 14px rgba(0,0,0,0.18);
+}
+#sites p{
+	color: #344233;
+    font-family: "Poppins", Sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+	
+#sites .sites-blocks{
+	margin: 20px 0;
+	display: block;
+	position: relative;
+	top:0;
+	left:0;
+	width:100%;
+	margin: auto;
+	height: 320px;
+	
+}
+
+#sites .sites-blocks .overlay{
+	background-color: rgba(0,0,0,0.49);
+	position: absolute;
+	content:"";
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	transition: ease-in 0.5s all 0s;
+	text-align: center;
+	color: #fff;
+	
+}
+
+#sites .sites-blocks .overlay:hover  {
+	background-color: rgba(75,83,32,0.92);
+	position: absolute;
+	content:"";
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	transition: ease-in 0.5s all 0s;
+	text-align: center;
+	color: #fff;
+}
+
+#sites .sites-blocks .overlay h3{
+	font-family: Poppins;
+	font-size: 30px;
+	font-weight: 800;	
+	bottom: 5%;
+	left: 30%;
+	display: block;
+	margin: auto;
+	position: absolute;
+	text-align: center;
+}
+
+footer .widget-area h3{
+	font-family: "Barlow", Sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+	color: #fff;
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+}
+footer .widget-area h4{
+	font-family: "Barlow", Sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+}	
+	
+}

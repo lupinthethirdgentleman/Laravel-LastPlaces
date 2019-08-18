@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="<?php echo app()->getLocale(); ?>">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta>
+<title>
+	<?php 
+		$pre = Config::get("Site.title");
+		if(isset($title)){
+			echo $pre.' - '.$title;
+		}
+		else{
+			echo $pre;
+		}
+	?>		
+</title>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
+<?php echo HTML::style('css/font-awesome.min.css'); ?>
+
+<?php echo HTML::style('css/pnotify.core.css'); ?>
+
+<?php echo HTML::style('css/bootstrap.css'); ?>
+
+<?php echo HTML::style('css/custom.css'); ?>
+
+<?php echo HTML::script('js/jquery.min.js'); ?>
+
+<?php echo HTML::script('js/jquery.form.js'); ?>
+
+
+</head>
+
+<body>
+<?php echo $__env->make('layouts.main.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->yieldContent('content'); ?>
+<?php echo $__env->make('layouts.main.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo HTML::script('js/pnotify-master/pnotify.core.js'); ?>
+
+<?php echo HTML::script('js/bootstrap.min.js'); ?>
+
+<?php echo HTML::script('js/bootstrap.js'); ?>
+
+
+<script type="text/javascript">
+				function notice(title,message,type){
+				new PNotify({
+					title: title,
+					addclass: "stack-topright",
+					text: message,
+					type : type,
+					hide: true,
+					shadow: true,
+					delay: 6000,
+					mouse_reset: true,
+					buttons: {
+						closer: true ,
+						sticker:false
+					}
+				});
+			}
+
+</script>
+</body>
+</html>

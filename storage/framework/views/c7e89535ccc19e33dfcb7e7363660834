@@ -1,0 +1,89 @@
+<?php $__env->startSection('content'); ?>
+
+<div  class="mws-panel grid_8 mws-collapsible">
+	<div class="mws-panel-header">
+		<span>
+			<i class="icol-status-online"></i> <?php echo trans("messages.$modelName.view_enquiry"); ?> 
+		</span>
+		<a href='<?php echo route("$modelName.index"); ?>' class="btn btn-success btn-small align"><?php echo trans("messages.global.back"); ?>  </a>
+	</div>
+	
+	<div class="mws-panel-body no-padding dataTables_wrapper">
+		<table class="mws-table mws-datatable">
+			<tbody>
+				<tr>
+					<th width="30%" class="text-right"><?php echo trans("messages.$modelName.tripname"); ?></th>
+					<td data-th='<?php echo trans("messages.$modelName.name"); ?>'><?php echo $model->trip->tripname; ?></td>
+				</tr>
+				<tr>
+					<th width="30%" class="text-right"><?php echo trans("messages.$modelName.name"); ?></th>
+					<td data-th='<?php echo trans("messages.$modelName.name"); ?>'><?php echo $model->name; ?></td>
+				</tr>
+				<tr>
+					<th width="30%" class="text-right"><?php echo trans("messages.$modelName.email"); ?></th>
+					<td data-th='<?php echo trans("messages.$modelName.email"); ?>'><?php echo $model->email; ?></td>
+				</tr>
+<!-- 				<tr>
+					<th width="30%" class="text-right"><?php echo trans("messages.$modelName.subject"); ?></th>
+					<td data-th='<?php echo trans("messages.$modelName.subject"); ?>'><?php echo $model->subject; ?></td>
+				</tr> -->
+				<tr>
+					<th width="30%" valign="top" class="text-right"><?php echo trans("messages.$modelName.message"); ?></th>
+					<td data-th='<?php echo trans("messages.$modelName.message"); ?>'><?php echo $model->message; ?></td>
+				</tr>
+				<tr>
+					<th width="30%" class="text-right"><?php echo trans("messages.global.created"); ?></th>
+					<td data-th='<?php echo trans("messages.$modelName.created"); ?>'><?php echo date(Config::get("Reading.date_format") , strtotime($model->created_at)); ?></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<!-- reply section start here -->
+<div class="mws-panel grid_8" id="reply">
+	<div class="mws-panel-header">
+		<span>
+			<i class="fa fa-exclamation-circle "></i><?php echo trans("messages.$modelName.reply"); ?>
+
+		</span>
+	</div>
+	<div class="mws-panel-body no-padding dataTables_wrapper">
+			<span class="contactMsg"></span>
+			<?php echo Form::open(['role' => 'form','url'=>route("$modelName.reply","$modelId"),'class' => 'mws-form']); ?>
+
+			<?php echo Form::hidden('trip_name',$model->trip->tripname); ?>
+
+				<div class="mws-form-inline">
+					<div class="mws-form-row">
+						<div class="mws-form-message info">
+							<?php echo trans("messages.$modelName.message_will_be_attached_in_email"); ?>
+
+						</div>
+					</div>
+					<div class="mws-from-row contactMessageBox">
+						<?php echo Form::label('body', trans("messages.$modelName.message"), ['class' => 'mws-form-label']); ?>
+
+						<div class="input textarea">
+						<?php echo Form::textarea("message",'', ['id' => 'body','rows' => 5,'cols'=>80,'class'=>'form-control contactHeight','required']); ?>
+
+						</div>
+						<div class="error-message help-inline">
+							<?php echo $errors->first('message'); ?>
+
+						</div>
+					</div>
+				</div>
+				<div class="mws-button-row">
+					<input type="submit" value='<?php echo trans("messages.$modelName.reply"); ?>' class="btn btn-danger">
+						<a href="<?php echo Request::url(); ?>" class="btn primary"><i class=\"icon-refresh\"></i> <?php echo trans("messages.global.reset"); ?> </a>
+				</div>
+			<?php echo Form::close(); ?>
+
+		</div>
+	</div>
+<!-- reply section end here -->
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,119 @@
+@import "http://fonts.googleapis.com/css?family=Montserrat:300,400,700";
+/* .mws-datatable {
+	margin: 1em 0;
+	min-width: 300px;
+} */
+.mws-datatable tr {
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+.mws-datatable th {
+	display: none;
+}
+.mws-datatable td {
+	display: block;
+	border-top : 0!important;
+}
+.details td {
+	display: table-cell;
+	border-top : 0!important;
+}
+
+/* .mws-datatable td:first-child {
+	padding-top: .5em;
+} */
+.mws-datatable td:last-child {
+	padding-bottom: .5em;
+}
+.mws-datatable td.no-record-found:before {display:none} 
+.mws-datatable:not(.details) td:before {
+	content: attr(data-th) ": ";
+	/* font-weight: bold;
+	width: 6.5em;
+	display: inline-block; */
+	
+}
+.mws-datatable td:before {
+	font-weight: bold;
+	width: 6.5em;
+	display: inline-block;
+	
+}
+@media (min-width: 480px) {
+  .mws-datatable td:before {
+    display: none;
+  }
+}
+/* .mws-datatable th, .mws-datatable td {
+	text-align: left;
+} */
+@media (min-width: 480px) {
+  .mws-datatable th, .mws-datatable td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .mws-datatable th:first-child, .mws-datatable td:first-child {
+    padding-left: 0;
+  }
+  .mws-datatable th:last-child, .mws-datatable td:last-child {
+    padding-right: 0;
+  }
+}
+/*
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #eee;
+}
+
+h1 {
+  font-weight: normal;
+  letter-spacing: -1px;
+  color: #34495E;
+}
+*/
+/* .mws-datatable {
+  background: #34495E;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+} */
+/* .mws-datatable tr {
+  border-color: #46627f;
+} */
+/* .mws-datatable th, .mws-datatable td {
+  margin: .5em 1em;
+} */
+@media (min-width: 480px) {
+  .mws-datatable th, .mws-datatable td {
+    padding: 1em !important;
+  }
+}
+.mws-datatable th, .mws-datatable td:before {
+  	/* color: #dd5; */
+}
+
+/* used at user add and edit page */
+
+.userPassword {
+    margin-bottom: 2% !important;
+    width: 90% !important;
+}
+.mws-form-item.userRadio input {
+    width: auto !important;
+}
+.mws-form-label.floatleft {
+    float: left !important;
+    width: auto !important;
+}
+ /* contact view page */
+ 
+.contactMessageBox {
+    padding: 18px 24px;
+}
+.contactHeight {
+    width: 100%;
+}

@@ -1,0 +1,33 @@
+<?php echo HTML::style('css/admin/styles.css'); ?>
+
+
+<?php echo HTML::style('css/admin/lightbox.css'); ?>
+
+
+
+<?php $__env->startSection('content'); ?>
+
+<style>
+.blueicon {
+    color: #5bc0de;
+}
+.redicon {
+    color: #d9534f;
+}
+.greenicon {
+    color: #82b964;
+}
+</style>
+
+<!-- Searching div -->  
+<?php echo HTML::script('js/admin/lightbox.js'); ?>
+
+<!-- js for equal height of the div  -->
+<?php echo HTML::script('js/admin/jquery.matchHeight-min.js'); ?>
+
+
+<?php echo HTML::script('js/admin/multiple_delete.js'); ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,255 @@
+
+<?php $__env->startSection('content'); ?>
+
+
+<style>
+  
+  /*.page_title
+  {
+    background-image: url('<?php //if($result['header_image'] != '' && File::exists(HEADER_COUNTRY_IMAGE_ROOT_PATH.$result['header_image'])) {echo HEADER_COUNTRY_IMAGE_URL.$result['header_image'];} else { echo WEBSITE_IMG_URL."inner_pages.jpg";}?>');
+    height:250px;margin-bottom:30px
+  }*/
+.header_hwe
+{
+    margin-top: -250px;
+    color: #FFFF;
+}
+</style>
+<div class="page_title">
+  <img src='<?php if($result['header_image'] != '' && File::exists(HEADER_COUNTRY_IMAGE_ROOT_PATH.$result['header_image'])) {echo HEADER_COUNTRY_IMAGE_URL.$result['header_image'];} else { echo WEBSITE_IMG_URL."inner_pages.jpg";}?>' style="width:100%;height:250px;"/>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-offset-4 header_hwe">
+        <h1><?php echo isset($result['heading']) ? $result['heading'] : ''; ?> </h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="region_view_country">
+    <div class="region_view_country_sm-6" style="align-self: normal !important" >
+      <div class="region_view_country-img">
+        <?php if($result['image'] != '' && File::exists(COUNTRY_IMAGE_ROOT_PATH.$result['image'])): ?>
+        <!-- <img src="<?php echo COUNTRY_IMAGE_URL.$result['image']; ?>" width="550" height="480"  alt=""/> -->
+        <img src="<?php echo WEBSITE_URL.'image.php?width=550px&height=480px&image='.COUNTRY_IMAGE_URL.$result['image'];?>" alt="" />
+        <?php else: ?>
+        <?php echo HTML::image('img/noimg.png', '', array('width' => '80', 'height' => '80' )); ?>
+
+        <?php endif; ?>
+      </div>
+    </div>
+  </div>
+  <div class="" style="align-self: normal !important"> 
+    <div class="landing_text">
+      <div class="trip_tabs">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab" aria-expanded="true"><?php echo trans("messages.General"); ?></a></li>
+          <li role="presentation" class=""><a href="#Itenary" aria-controls="Itenary" role="tab" data-toggle="tab" aria-expanded="false"><?php echo trans("messages.Tribes"); ?></a></li>
+          <li role="presentation"><a href="#coninfo" aria-controls="coninfo" role="tab" data-toggle="tab"><?php echo trans("messages.Art & Architecture"); ?></a></li>
+          <li role="presentation"><a href="#clientsay" aria-controls="clientsay" role="tab" data-toggle="tab"><?php echo trans("messages.Nature"); ?></a></li>
+          <li role="presentation"><a href="#clientsay_hwe" aria-controls="clientsay" role="tab" data-toggle="tab"><?php echo trans("messages.Travel Infomation"); ?></a></li>
+          
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="overview">
+          <?php if(!empty($result['description'])): ?>
+           <section id="readmore_description">
+            <?php echo str_limit($result['description'], $limit = 1000, $end = '<a  href="javascript:void(0)" onclick="readMore1(this)"> Read More</a>'); ?>
+
+           </section>
+           <section style="display:none;" id="readless_description">
+            <?php echo $result['description']; ?> <a  href="javascript:void(0)" onclick="readLess1(this)"><?php echo trans("messages.Read Less"); ?></a>
+           </section>
+           <?php endif; ?>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="Itenary">
+            <?php if(!empty($result['countryinfo'])): ?>
+             <section id="readmore_countryinfo">
+              <?php echo str_limit($result['countryinfo'], $limit = 1000, $end = '<a  href="javascript:void(0)" onclick="readMore2(this)"> Read More</a>'); ?>
+
+             </section>
+             <section style="display:none;" id="readless_countryinfo">
+              <?php echo $result['countryinfo']; ?> <a  href="javascript:void(0)" onclick="readLess2(this)"><?php echo trans("messages.Read Less"); ?></a>
+             </section>
+             <?php endif; ?>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="coninfo">
+            
+            <?php if((isset($result['art_architecture'])) && (!empty($result['art_architecture']))): ?>
+             <section id="readmore_art">
+              <?php echo str_limit($result['art_architecture'], $limit = 1000, $end = '<a  href="javascript:void(0)" onclick="readMore3(this)"> Read More</a>'); ?>
+
+             </section>
+
+             <section style="display:none;" id="readless_art">
+              <?php echo $result['art_architecture']; ?> <a  href="javascript:void(0)" onclick="readLess3(this)"><?php echo trans("messages.Read Less"); ?></a>
+             </section>
+
+            <?php endif; ?>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="clientsay">
+            <?php if(!empty($result['nature'])): ?>
+             <section id="readmore_nature">
+              <?php echo str_limit($result['nature'], $limit = 1000, $end = '<a  href="javascript:void(0)" onclick="readMore4(this)"> Read More</a>'); ?>
+
+             </section>
+             <section style="display:none;" id="readless_nature">
+              <?php echo $result['nature']; ?> <a  href="javascript:void(0)" onclick="readLess4(this)"><?php echo trans("messages.Read Less"); ?></a>
+             </section>
+             <?php endif; ?>
+          </div>
+           <div role="tabpanel" class="tab-pane" id="clientsay_hwe">
+          
+            <?php if(!empty($result['travel'])): ?>
+             <section id="readmore_travel">
+              <?php echo str_limit($result['travel'], $limit = 1000, $end = '<a  href="javascript:void(0)" onclick="readMore5(this)"> Read More</a>'); ?>
+
+             </section>
+             <section style="display:none;" id="readless_travel">
+              <?php echo $result['travel']; ?> <a  href="javascript:void(0)" onclick="readLess5(this)"><?php echo trans("messages.Read Less"); ?></a>
+             </section>
+            <?php endif; ?>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="tripmap" style="width:100%;height:400px;">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="landing_page">
+  <div class="container">
+    <div class="landing_text" style="margin-bottom:10px;">
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <?php if(sizeof($trip_result)>0): ?>
+  <?php foreach($trip_result as $trip_res): ?>
+  <div class="region_view-box">
+    <div class="row">
+      <div class="col-sm-5">
+        <?php if($trip_res['img'] != '' && File::exists(TRIP_IMAGE_ROOT_PATH.$trip_res['img'])): ?>
+        <div class="region_view-box-img">
+          <a href="<?php echo URL::to('trips/'.''.$result['name'].'/'.$trip_res['slug']); ?>">
+            <!-- <img src="<?php echo TRIP_IMAGE_URL.$trip_res['img']; ?>" width="550" height="480"  alt=""/> -->
+            <img src="<?php echo WEBSITE_URL.'image.php?width=550px&height=480px&image='.TRIP_IMAGE_URL.$trip_res['img'];?>" alt="" />
+          </a>
+        </div>
+        <?php else: ?>
+        <div>
+          <a href="<?php echo URL::to('trips/'.''.$result['name'].'/'.$trip_res['slug']); ?>" >
+          <?php echo HTML::image('img/noimg.png', '', array('width' => '80', 'height' => '80' )); ?>
+
+          </a>
+        </div>
+        <?php endif; ?>
+      </div>
+      <div class="col-sm-7">
+        <div class="region_view-box-text">
+          <h2>
+            <a href="<?php echo URL::to('trips/'.''.$result['slug'].'/'.$trip_res['slug']); ?>"><?php echo $trip_res['tripname']; ?>
+
+            </a>
+          </h2>
+          <p><?php echo $trip_res['description']; ?></p>
+          <a href="<?php echo URL::to('trips/'.''.$result['slug'].'/'.$trip_res['slug']); ?>" class="btn btn-primary"><?php echo trans('messages.viewtripdetails'); ?></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php endforeach; ?>
+  <?php else: ?>
+  <p class="no_trip_found"><?php echo trans('messages.notripsfound'); ?></p>
+  <?php endif; ?>
+</div>
+
+</div>
+<?php echo $__env->make('layouts.main.footer_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<script type="text/javascript">
+ /* function readMore(e){
+
+    $(e).parent().hide();
+    $(e).parent().next().show();
+   // document.getElementById("read_more").style.display = 'none';
+    //document.getElementById("read_less").style.display = 'block';
+   
+  }
+
+  function readLess(e){
+    //document.getElementById("read_more").style.display = 'block';
+    //document.getElementById("read_less").style.display = 'none';
+    $(e).parent().hide();
+    $(e).parent().prev().show();
+  }
+*/
+  function readMore1(e){
+    document.getElementById("readmore_description").style.display = 'none';
+    document.getElementById("readless_description").style.display = 'block';
+   
+  }
+
+  function readLess1(e){
+    document.getElementById("readmore_description").style.display = 'block';
+    document.getElementById("readless_description").style.display = 'none';
+    
+  }
+   function readMore2(e){
+    document.getElementById("readmore_countryinfo").style.display = 'none';
+    document.getElementById("readless_countryinfo").style.display = 'block';
+   
+  }
+
+  function readLess2(e){
+    document.getElementById("readmore_countryinfo").style.display = 'block';
+    document.getElementById("readless_countryinfo").style.display = 'none';
+    
+  }
+
+   function readMore3(e){
+    document.getElementById("readmore_art").style.display = 'none';
+    document.getElementById("readless_art").style.display = 'block';
+   
+  }
+
+  function readLess3(e){
+    document.getElementById("readmore_art").style.display = 'block';
+    document.getElementById("readless_art").style.display = 'none';
+    
+  }
+
+  function readMore4(e){
+    document.getElementById("readmore_nature").style.display = 'none';
+    document.getElementById("readless_nature").style.display = 'block';
+   
+  }
+
+  function readLess4(e){
+    document.getElementById("readmore_nature").style.display = 'block';
+    document.getElementById("readless_nature").style.display = 'none';
+    
+  }
+
+   function readMore5(e){
+    document.getElementById("readmore_travel").style.display = 'none';
+    document.getElementById("readless_travel").style.display = 'block';
+   
+  }
+
+  function readLess5(e){
+    document.getElementById("readmore_travel").style.display = 'block';
+    document.getElementById("readless_travel").style.display = 'none';
+    
+  }
+
+
+
+</script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.inner', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

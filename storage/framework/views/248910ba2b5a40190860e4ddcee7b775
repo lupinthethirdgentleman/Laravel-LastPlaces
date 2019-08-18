@@ -1,0 +1,116 @@
+
+<?php $__env->startSection('content'); ?>
+<div class="page_title">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-offset-4">
+                <h1><?php echo isset($result['heading']) ? $result['heading'] : ''; ?> </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+      <div class="region_view_country">
+
+    <div class="region_view_country_sm-6">
+        <div class="region_view_country-img">
+       <?php if($result['image'] != '' && File::exists(COUNTRY_IMAGE_ROOT_PATH.$result['image'])): ?>
+          <!-- <img src="<?php echo COUNTRY_IMAGE_URL.$result['image']; ?>" width="550" height="480"  alt=""/> -->
+          <img src="<?php echo WEBSITE_URL.'image.php?width=550px&height=480px&image='.COUNTRY_IMAGE_URL.$result['image'];?>" alt="" />
+        <?php else: ?>
+          <?php echo HTML::image('img/noimg.png', '', array('width' => '80', 'height' => '80' )); ?>
+
+        <?php endif; ?>
+       </div>
+    </div>
+     <div class="region_view_country_sm-6"> 
+  
+                <?php echo isset($result['description']) ? $result['description'] : ''; ?>
+
+
+      </div>
+  
+</div>
+</div>
+
+<div class="landing_page">
+  <div class="container">
+    <div class="landing_text" style="margin-bottom:10px;">
+    
+    </div>
+  </div>
+</div>
+
+<!--
+<div class="container">
+    <?php if(sizeof($trip_result)>0): ?>
+    <?php foreach($trip_result as $trip_res): ?>
+    <div class="row">
+            <div class="col-sm-6">
+               <p>
+                <?php if($trip_res['img'] != '' && File::exists(TRIP_IMAGE_ROOT_PATH.$trip_res['img'])): ?>
+                  <img src="<?php echo TRIP_IMAGE_URL.$trip_res['img']; ?>" width="550" height="480"  alt=""/>
+                <?php else: ?>
+                  <?php echo HTML::image('img/noimg.png', '', array('width' => '80', 'height' => '80' )); ?>
+
+                <?php endif; ?></p>
+            </div>
+            <div class="col-sm-6">
+               <p><?php echo $trip_res['tripname']; ?></p>
+               <p><?php echo $trip_res['description']; ?></p>
+               <a href="<?php echo URL::to('trips-vacations/'.''.$result['name'].'/'.$trip_res['slug']); ?>">View Trips</a>
+            </div>
+    </div>
+    <?php endforeach; ?>
+    <?php else: ?>
+    <p>No Trips Found</p>
+    <?php endif; ?>
+  </div>
+-->
+<div class="container">
+   
+    <?php if(sizeof($trip_result)>0): ?>
+    <?php foreach($trip_result as $trip_res): ?>
+    <div class="region_view-box">
+    <div class="row">
+     <div class="col-sm-5">
+              <?php if($trip_res['img'] != '' && File::exists(TRIP_IMAGE_ROOT_PATH.$trip_res['img'])): ?>
+                  <div class="region_view-box-img">
+                   <a href="<?php echo URL::to('trips/'.''.$result['name'].'/'.$trip_res['slug']); ?>">   
+                    <!-- <img src="<?php echo TRIP_IMAGE_URL.$trip_res['img']; ?>" width="550" height="480"  alt=""/> -->
+                    <img src="<?php echo WEBSITE_URL.'image.php?width=550px&height=480px&image='.TRIP_IMAGE_URL.$trip_res['img'];?>" alt="" /></a>
+                  </div>
+                <?php else: ?>
+                  <div>
+                    <a href="<?php echo URL::to('trips/'.''.$result['name'].'/'.$trip_res['slug']); ?>" >
+                   <?php echo HTML::image('img/noimg.png', '', array('width' => '80', 'height' => '80' )); ?>
+
+                    </a>
+                  </div>
+                <?php endif; ?>
+     
+     </div>
+      <div class="col-sm-7">
+        <div class="region_view-box-text">  
+              <h2>
+              <a href="<?php echo URL::to('trips/'.''.$result['slug'].'/'.$trip_res['slug']); ?>"><?php echo $trip_res['tripname']; ?>
+
+              </a></h2>
+              <p><?php echo $trip_res['description']; ?></p>
+              <a href="<?php echo URL::to('trips/'.''.$result['slug'].'/'.$trip_res['slug']); ?>" class="btn btn-primary"><?php echo trans('messages.viewtripdetails'); ?></a>
+        </div>
+      </div>
+    </div>
+    
+    </div>    
+   
+    <?php endforeach; ?>
+    <?php else: ?>
+    <p class="no_trip_found"><?php echo trans('messages.notripsfound'); ?></p>
+    <?php endif; ?>
+  </div>
+
+<?php echo $__env->make('layouts.main.footer_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.inner', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

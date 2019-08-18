@@ -1,0 +1,77 @@
+<?php $__env->startSection('content'); ?>
+
+<?php echo HTML::script('js/admin/multiple_delete.js'); ?>
+
+<?php echo HTML::style('css/admin/lightbox.css'); ?>
+
+
+<div class="mws-panel grid_8 mws-collapsible">
+	<!-- table heading and add new button-->
+	<div class="mws-panel-header">
+		<span>
+		<i class="icon-table"></i> <?php echo trans("messages.$modelName.table_heading_comment"); ?> </span>
+		
+	</div>	
+	
+	<!-- table secttion start here-->
+	<div class="mws-panel-body no-padding dataTables_wrapper">
+
+		<table class="mws-table mws-datatable">
+			<thead>
+				<tr>
+					<!-- <th></th>  -->
+					<th width="30%">
+					<?php echo trans("messages.$modelName.name"); ?>	
+										
+					</th>
+					<th><?php echo trans("messages.$modelName.email"); ?></th>
+
+					<th width="30%"><?php echo trans("messages.$modelName.comment"); ?></th>
+					
+					<th><?php echo trans("messages.global.action"); ?></th>
+				</tr>
+			</thead>
+			<tbody id="powerwidgets">
+						<?php
+						
+						if(!$model->isEmpty())
+						{
+							foreach($model as $result){ ?>
+
+							<tr class="items-inner">
+								
+								<td data-th='<?php echo trans("messages.$modelName.full_name"); ?>'>
+									<?php echo strip_tags(Str::limit($result->full_name, 120)); ?>
+
+								</td>
+								
+								<td data-th='<?php echo trans("messages.$modelName.email"); ?>'>
+									<?php echo strip_tags(Str::limit($result->email, 250)); ?>
+
+								</td>
+								<td data-th='<?php echo trans("messages.$modelName.comment"); ?>'>
+									<?php echo strip_tags(Str::limit($result->comment, 120)); ?>
+
+								</td>
+								<td  data-th='<?php echo trans("messages.global.action"); ?>'>
+									
+									<a href='<?php echo route("$modelName.delete_comment","$result->id"); ?>' class="delete_user btn btn-danger btn-small no-ajax "><?php echo trans("messages.global.delete"); ?> </a>
+									
+								</td>
+								
+							</tr>
+					
+				<?php }} else { ?>
+					<tr>
+							<td align="center" width="100%" > <?php echo trans("messages.global.no_record_found_message"); ?></td>
+						</tr>
+				<?php }?>
+			</tbody>
+		</table>
+	</div>
+	<?php echo $__env->make('pagination.default', ['paginator' => $model], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

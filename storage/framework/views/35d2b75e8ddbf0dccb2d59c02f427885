@@ -1,0 +1,92 @@
+<?php $__env->startSection('content'); ?>
+
+<!-- CKeditor start here-->
+<?php echo HTML::style('css/admin/custom_li_bootstrap.css'); ?>
+
+<?php echo HTML::script('js/bootstrap.js'); ?>
+
+<?php echo HTML::script('js/admin/ckeditor/ckeditor.js'); ?>
+
+<style>
+.image_display{
+	width:20%;
+	float:left;
+	margin:10px;
+	padding:10px;
+	
+}
+
+</style>
+<div class="mws-panel grid_8">
+
+	<div class="mws-panel-header" style="height: 46px;">
+		<span> <?php echo trans("View Country Tribes Photos"); ?> </span>
+		<a href='<?php echo route("$modelName.index"); ?>' class="btn btn-success btn-small align"><?php echo trans("messages.global.back"); ?> </a>
+	</div>
+
+		
+
+		<?php echo Form::open(['role' => 'form','url' =>  route("$modelName.edit",""),'class' => 'mws-form']); ?>
+
+		
+	<div class="mws-panel-body no-padding">
+		
+		<div class="mws-form-inline">
+			
+		</div>
+	</div>
+
+		<div class="mws-panel-body no-padding tab-content"> 
+			<?php foreach($photos as $photo_display): ?>
+			<div class="image_display">
+				
+				<img src="<?php echo WEBSITE_URL .'image.php?width=300&height=180px&cropratio=5:3&image=' . PHOTOGALLERY_IMAGE_URL.$photo_display->image;?>" alt="" />
+				
+				<div>
+				<?php echo Form::text('image_title',$photo_display->title,array('style'=>'width:175px;margin-top:1px','id'=>'image_id'.$photo_display->id)); ?>
+
+				
+			</div>
+				<div style="margin-top:10px;">
+					<a href="<?php echo URL::to('/admin/photo-country-manager/delete-photo/'.$photo_display->id); ?>" class="btn btn-danger">Delete</a>
+					<a href="javascript:void(0)" onclick='updateTitle("<?php echo $photo_display->id; ?>")' class="btn btn-danger" id="Save_Tilte">Save</a>
+			    </div>
+			</div>
+			<?php endforeach; ?>
+
+
+
+			<div style="clear:both;"></div>
+			<div class="mws-button-row">
+				<!--<div class="input" >
+					<input type="submit" value="<?php echo trans('messages.global.delete'); ?>" class="btn btn-danger">
+				</div> -->
+			</div>
+		</div>
+
+
+
+		<?php echo Form::close(); ?> 
+
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<script type="text/javascript">
+	function updateTitle(imageId){
+		
+		var imageTitle = $("#image_id"+imageId).val();
+	  	$.ajax({
+	        type: "POST",
+	        url : "<?php echo url('/admin/photo-country-manager/save-title'); ?>",
+	        data : { id:imageId,image_title:imageTitle },
+	        success : function(data){
+	        	alert("Title save Successfully.")
+	        	//document.getElementById($data).innerHTML = data;
+	        }
+	    });
+		
+	}	
+</script>
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

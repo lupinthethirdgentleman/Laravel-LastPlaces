@@ -1,0 +1,31 @@
+<?php $__env->startSection('content'); ?>
+
+<div id="mws-login">
+	<h1>Forgot Password</h1>
+	<div class="mws-login-lock"><i class="icon-lock"></i></div>
+	<div id="mws-login-form">
+		<?php echo Form::open(['role' => 'form','url' => 'admin/send_password']); ?>
+
+		<div class="mws-form-row">
+			<div class="mws-form-item">
+				<?php echo Form::text('email', null, ['placeholder' => 'Email', 'style'=>'width:100%','class'=>'mws-login-username required']); ?>
+
+			</div>
+			<div class="error-message help-inline">
+				<?php echo $errors->first('email'); ?>
+			</div>
+		</div>
+		<div align="right" class="mws-form-row">
+			<input type="submit" value="Submit" class="btn btn-primary mws-login-button" style="width:35% !important;">
+			<a style="width:65px !important;" class="btn btn-danger mws-info-button" href="<?php echo URL::to('/admin'); ?>">Cancel</a>
+		</div>
+		<?php echo Form::close(); ?>
+
+	</div>
+</div>
+
+
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('admin.layouts.login_layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

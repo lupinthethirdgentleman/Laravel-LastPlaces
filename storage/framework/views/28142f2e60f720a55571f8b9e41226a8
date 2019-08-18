@@ -1,0 +1,76 @@
+<?php $__env->startSection('content'); ?>
+
+<?php echo HTML::style('css/admin/custom_li_bootstrap.css'); ?>
+
+<?php echo HTML::script('js/bootstrap.js'); ?>
+
+<?php echo HTML::script('js/admin/ckeditor/ckeditor.js'); ?>
+
+
+<?php echo HEADER_IMAGE_INFO; ?>
+
+
+<div class="mws-panel grid_8">
+	<!-- add new and back button-->
+	<div class="mws-panel-header" style="height: 46px;">
+		<span> <?php echo trans("messages.$modelName.table_heading_edit"); ?></span>
+		<a href='<?php echo route("$modelName.edit","$model->id"); ?>'  class="btn btn-success btn-small align"><?php echo trans("messages.global.back"); ?> </a>
+	</div>
+	
+	
+	<?php echo Form::open(['role' => 'form','route' =>"$modelName.update",'class' => 'mws-form', 'files' => true]); ?>
+
+		<?php echo Form::hidden('id', $model->id); ?>
+
+		<div class="mws-panel-body no-padding">
+			<!-- common field message -->
+			
+			<!-- common field-->
+			<div class="mws-form-inline">
+				<div class="mws-form-row">
+					<?php echo HTML::decode(Form::label('image', trans("Image"), ['class' => 'mws-form-label'])); ?>
+
+					<div class="mws-form-item">
+						<?php echo Form::file('image'); ?>
+
+						<?php if(File::exists(HEADER_IMAGE_ROOT_PATH.$model->value)): ?>
+						<?php echo HTML::image( HEADER_IMAGE_URL.$model->value, $model->value , array( 'width' => 70, 'height' => 70 )); ?>
+
+						<?php endif; ?>
+						<!-- Toll tip div start here -->
+						<span class='tooltipHelp' title="" data-html="true" data-toggle="tooltip"  data-original-title="<?php echo "The attachment must be a file of type:".IMAGE_EXTENSION; ?>" style="cursor:pointer;">
+						<i class="fa fa-question-circle fa-2x"> </i>
+						</span>
+						<!-- Toll tip div end here -->
+						<div class="error-message help-inline">
+							<?php echo $errors->first('image'); ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- button-->
+		<div class="mws-button-row">
+			<div class="input" >
+				<input type="submit" value="<?php echo trans('messages.global.save'); ?>" class="btn btn-danger">
+				<a href='<?php echo route("$modelName.edit","$model->id"); ?>' class="btn primary"><i class=\"icon-refresh\"></i> <?php echo trans('messages.global.reset'); ?></a>
+			</div>
+		</div>
+	</div>
+
+<?php echo Form::close(); ?>
+
+</div>
+<!-- for tooltip -->
+<?php echo HTML::script('js/bootstrap.min.js'); ?>
+
+<!-- for tooltip -->
+<script>
+	/** For tooltip */
+	$('[data-toggle="tooltip"]').tooltip();   
+</script>
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,92 @@
+<!-- <footer>
+    <div class="fmenu">
+        <a href="<?php echo URL::to('pages/about-us'); ?>">About Us</a>
+        <a href="<?php echo URL::to('contact-us'); ?>">Contact Us</a>
+        <a href="<?php echo URL::to('pages/privacy-policy'); ?>">Privacy Policy</a>
+        <a href="<?php echo URL::to('pages/term-and-condition'); ?>">Terms &amp; Conditions</a>
+        <a href="<?php echo URL::to('faq'); ?>">FAQ</a>
+         <a href="<?php echo URL::to('pages/help'); ?>">Help</a>
+        <a href="<?php echo URL::to('pages/about-dahcp-reviews'); ?>">About DA/HCP Reviews </a></div>
+
+    <div class="fsocial">
+    	<a target="_blank" href="<?php echo Config::get('Social.facebook'); ?>">
+    		<?php echo HTML::image('img/facebook.png', '', array('width' => '32', 'height' => '32')); ?>
+
+    	</a>
+    	<a href="<?php echo Config::get('Social.twitter'); ?>" target="_blank">
+    		<?php echo HTML::image('img/twitter.png', '', array('width' => '32', 'height' => '32')); ?>
+
+    	</a>
+    	<a href="<?php echo Config::get('Social.linkedin'); ?>" target="_blank">
+    		<?php echo HTML::image('img/linkedin.png', '', array('width' => '32', 'height' => '32')); ?>
+
+    	</a>
+    	<a href="<?php echo Config::get('Social.instagram'); ?>" target="_blank">
+    		<?php echo HTML::image('img/instagram.png', '', array('width' => '32', 'height' => '32')); ?>
+
+    	</a>
+    	<a href="<?php echo Config::get('Social.gplus'); ?>" target="_blank">
+    		<?php echo HTML::image('img/gplus.png', '', array('width' => '32', 'height' => '32')); ?>
+
+    	</a>
+    	<a href="<?php echo Config::get('Social.pinterest'); ?>" target="_blank">
+    		<?php echo HTML::image('img/pintrest.png', '', array('width' => '32', 'height' => '32')); ?>
+
+    	</a>
+    </div>
+    <div class="copyright"><?php echo Config::get('Site.copyright_text'); ?></div>
+</footer> -->
+
+<footer>
+    <div class="container footer_top">
+        <div class="row">
+            <div class="col-sm-3"><a class="flogo" href="<?php echo URL::to('/'); ?>">
+                <img class="img-responsive" src="<?php echo asset('img/logo.png'); ?>" width="359" height="359"  alt=""/>
+            </a></div>
+            <div class="col-sm-3">
+              <h3 class="fblock_title"><?php echo trans('messages.company'); ?></h3>
+              <ul class="footer_links">
+                  <li><a href="<?php echo URL::to('pages/about-us'); ?>"><?php echo trans('messages.about_our_company'); ?></a></li>
+                  <li><a href="<?php echo URL::to('pages/our-services'); ?>"><?php echo trans('messages.our_services'); ?></a></li>
+                  <li><a href="<?php echo URL::to('testimonial_list'); ?>"><?php echo trans('messages.testimonials'); ?></a></li>
+                  <li><a href="<?php echo URL::to('/custom-payment'); ?>">Custom Payment</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-3">
+           	  <h3 class="fblock_title"><?php echo trans('messages.reservation'); ?></h3>
+              <ul class="footer_links">
+                  <li><a href="<?php echo URL::to('pages/term-and-condition'); ?>"><?php echo trans('messages.term_condition'); ?></a></li>
+                  <li><a href="<?php echo URL::to('pages/refund-policy'); ?>"><?php echo trans('messages.refund_policy'); ?></a></li>
+                  <li><a href="<?php echo URL::to('pages/privacy-policy'); ?>"><?php echo trans('messages.privacy_policy'); ?></a></li>
+                  <li><a href="<?php echo URL::to('pages/disclaimer'); ?>"><?php echo trans('messages.disclaimer'); ?></a></li>
+                   <li><a href="<?php echo URL::to('online-booking'); ?>"><?php echo trans('messages.booking'); ?></a></li>
+              </ul>
+            </div>
+            <div class="col-sm-3">
+           	  <h3 class="fblock_title"><?php echo trans('messages.contact_info'); ?></h3>
+                <ul class="footer_links">
+                	<li><?php echo Config::get('Site.address'); ?></li>
+                	<li><span><?php echo trans('messages.phone'); ?>:</span> <a href="tel:<?php echo Config::get('Site.phone'); ?>"><?php echo Config::get('Site.phone'); ?></a></li>
+                  <li><span><?php echo trans('messages.contact_email'); ?>:</span> <a href="#"><?php echo Config::get('Site.contact_email'); ?></a></li>
+                  
+                	<!-- <li><span><?php echo trans('messages.fax'); ?>:</span> 1.800.234.679</li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-sm-6"><?php echo trans('messages.copyright'); ?> &copy; 2018 by <span>lastplaces</span>. <?php echo trans('messages.all_right_reserved'); ?></div>
+            	<div class="col-sm-6">
+                	<ul class="fsocial">
+                    	<li><a target="_blank" href="<?php echo Config::get('Social.facebook'); ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    	<li><a target="_blank" href="<?php echo Config::get('Social.youtube'); ?>"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                    	<li><a target="_blank" href="<?php echo Config::get('Social.instagram'); ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+

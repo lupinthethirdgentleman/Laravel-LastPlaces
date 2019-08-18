@@ -1,0 +1,40 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="mws-panel grid_8">
+	<div class="mws-panel-header">
+		<span> <?php echo trans("messages.settings.edit_text"); ?></span>
+		<a href="<?php echo URL::to('admin/text-setting'); ?>" class="btn btn-success btn-small align"><?php echo trans("messages.settings.back"); ?>  </a>
+	</div>
+	
+	<?php echo Form::open(['role' => 'form','url' =>'admin/text-setting/update-new-text/'.$result->id,'class' => 'mws-form']); ?>
+
+	
+	<div class="mws-panel-body no-padding">
+		<div class="mws-form-inline">
+			<div class="mws-form-row">
+				<?php echo Form::label('value', trans("messages.settings.value"), ['class' => 'mws-form-label']); ?>
+
+				<div class="mws-form-item">
+					<?php echo Form::text('value',$result->value,['class' => 'small']); ?>
+
+					<div class="error-message help-inline">
+						<?php echo $errors->first('value'); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="mws-button-row">
+		<div class="input" >
+			<input type="submit" value="<?php echo trans('messages.settings.save'); ?>" class="btn btn-danger">
+			
+			<a href="<?php echo URL::to('admin/text-setting/edit-new-text/'.$result->id ); ?>" class="btn primary"><i class=\"icon-refresh\"></i> <?php echo trans("messages.settings.reset"); ?></a>
+		</div>
+	</div>
+	 <?php echo Form::close(); ?>
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

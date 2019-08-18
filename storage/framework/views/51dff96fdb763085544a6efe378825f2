@@ -1,0 +1,25 @@
+
+
+<?php $__env->startSection('content'); ?>
+<div class="page_title">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-offset-4">
+                <h1><?php echo isset($result['title']) ? $result['title'] : ''; ?> </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="landing_page">
+	<div class="container">
+		<div class="landing_text" style="margin-bottom:10px;">
+			<?php echo isset($result['body']) ? $result['body'] : ''; ?>
+
+		</div>
+	</div>
+</div>
+
+<?php echo $__env->make('layouts.main.footer_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.inner', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

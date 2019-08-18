@@ -1,0 +1,35 @@
+	#mws-themer #mws-themer-content ul li{
+		margin: 0;
+		color: #000000;
+	}
+	.right {
+		float:right;
+		margin-right:10px;
+	}
+	.width200 {
+		width:200px;
+	}
+	.hide_chart {
+		display:none;
+	}
+	.total_offers {
+		margin-left:160px;
+		font-size:17px;
+		font-family:"PT Sans",Arial,Helvetica,sans-serif;
+	}
+	.modal-body ul li {
+		font-size : 17px;
+		font-family:"PT Sans",Arial,Helvetica,sans-serif;
+	}
+	.ui-dialog .ui-dialog-content {
+		padding:0px;
+	}
+	table tbody tr td a {
+		color:blue;
+	}
+	table tbody tr td a:hover {
+		color:blue;
+	}
+	.hidden {
+		display:none;
+	}

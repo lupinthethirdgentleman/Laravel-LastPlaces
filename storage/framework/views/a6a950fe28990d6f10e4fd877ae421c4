@@ -1,0 +1,185 @@
+<?php $__env->startSection('content'); ?>
+
+<script type="text/javascript">
+ var action_url = '<?php echo route("$modelName.Multipleaction"); ?>';
+ </script>
+ 
+<?php echo HTML::script('js/admin/multiple_delete.js'); ?>
+
+
+<div id="mws-themer">
+	<div id="mws-themer-content" style="<?php echo ($searchVariable && !isset($searchVariable['records_per_page'])) ? 'right: 256px;' : ''; ?>"> 
+		<div id="mws-themer-ribbon"></div>
+		<div id="mws-themer-toggle" class="<?php echo ($searchVariable && !isset($searchVariable['records_per_page'])) ? 'opened' : ''; ?>">
+			<i class="icon-bended-arrow-left"></i> 
+			<i class="icon-bended-arrow-right"></i>
+		</div>
+	
+		<?php echo Form::open(['method' => 'get','role' => 'form','route' => "$modelName.index",'class' => 'mws-form']); ?>
+
+		<?php echo Form::hidden('display'); ?>
+
+		<div class="mws-themer-section">
+			<div id="mws-theme-presets-container" class="mws-themer-section">
+				<label><?php echo trans("messages.$modelName.page_name"); ?></label><br/>
+				<?php echo Form::text('name',((isset($searchVariable['name'])) ? $searchVariable['name'] : ''), ['class' => 'small']); ?>
+
+			</div>
+		</div>
+		<div class="mws-themer-separator"></div>
+		<div class="mws-themer-section" style="height:0px">
+			<ul><li class="clearfix"><span></span> <div id="mws-textglow-op"></div></li> </ul>
+		</div>
+		<div class="mws-themer-section">
+			<input type="submit" value="<?php echo trans('messages.global.search'); ?>" class="btn btn-primary btn-small">
+			<a href='<?php echo route("$modelName.index"); ?>'  class="btn btn-default btn-small"><?php echo trans('messages.global.reset'); ?></a>
+		</div>
+		<?php echo Form::close(); ?>
+
+	</div>
+</div>
+
+<div  class="mws-panel grid_8 mws-collapsible">
+	<div class="mws-panel-header">
+		<span>
+		<i class="icon-table"></i> <?php echo trans("messages.$modelName.table_heading_index"); ?> </span>
+		<?php if(Config::get('app.debug')): ?>
+			<a href='<?php echo route("$modelName.add"); ?>'  class="btn btn-success btn-small align"><?php echo trans("messages.$modelName.add_new"); ?> </a>
+		<?php endif; ?>
+	</div>
+<!-- 	<div class="dataTables_wrapper" style="background-color:#CCCCCC">
+		<div class="dataTables_length" id="DataTables_Table_0_length">
+			<div class="pull-left">
+				<form class="form-horizontal" method="get">
+					<div class="pull-left grytxt12 pr10 pt5">
+						Show&nbsp;&nbsp;
+					</div>
+					<div class="pull-left">
+						<select class="lstfld60" style="width:85px;" name="records_per_page" onchange="this.form.submit();">
+							<?php 
+								$recordPerPageAction	=	Config::get('Reading.records_per_pag_action');
+								print_r($recordPerPageAction);
+								if($recordPerPageAction!=''){
+									$recordPerPageActionArray 	=	explode(',',$recordPerPageAction);
+								}
+							?>	
+							<option value="2" selected="selected">Default</option>
+							<?php if(!empty($recordPerPageActionArray)): ?>
+								<?php foreach($recordPerPageActionArray as $value): ?>
+									<option <?php if(Input::get('records_per_page')==$value): ?> selected="selected" <?php endif; ?> ><?php echo $value; ?> </option>
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</select> 
+					</div>
+					<div class="pull-left grytxt12 pr10 pt5">
+						&nbsp;&nbsp;Entries		
+					</div>
+				   <div class="clr"></div>
+				</form>
+			</div>
+		</div>
+		<div id="DataTables_Table_0_length" class="dataTables_length right">
+			<?php 
+			$actionTypes	= array(
+					'delete' 		=> trans("messages.global.delete_all"),
+					'inactive' 		=> trans('messages.global.mark_as_inactive'),
+					'active' 		=> trans('messages.global.mark_as_active'),
+				 );
+			?>
+			<?php echo Form::open(); ?>
+
+				<?php echo Form::checkbox('is_checked','',null,['class'=>'left checkAllUser']); ?>
+
+				<?php echo Form::select('action_type',array(''=>trans("messages.global.select_action"))+$actionTypes,$actionTypes,['class'=>'deleteall selectUserAction']); ?>
+
+			<?php echo Form::close(); ?>
+
+		</div>
+	</div> -->
+	<div class="mws-panel-body no-padding dataTables_wrapper">
+		<table class="mws-table mws-datatable">
+			<thead>
+				<tr>
+					<!-- <th></th> -->
+					<th width="20%">
+						<?php echo link_to_route(
+							"Cms.index",
+							trans("messages.$modelName.page_name"),
+							array(
+								'sortBy' => 'name',
+								'order' => ($sortBy == 'name' && $order == 'desc') ? 'asc' : 'desc'
+							),
+							array('class' => (($sortBy == 'name' && $order == 'desc') ? 'sorting desc' : (($sortBy == 'name' && $order == 'asc') ? 'sorting asc' : 'sorting')) )
+							); ?>
+
+					</th>
+					<th width="30%"><?php echo trans("messages.$modelName.page_description"); ?></th>
+					<th><?php echo trans("messages.global.status"); ?></th>
+					<th>
+						<?php echo link_to_route(
+							"Cms.index",
+							trans("messages.$modelName.modified"),
+							array(
+								'sortBy' => 'updated_at',
+								'order' => ($sortBy == 'updated_at' && $order == 'desc') ? 'asc' : 'desc'
+							),
+							array('class' => (($sortBy == 'updated_at' && $order == 'desc') ? 'sorting desc' : (($sortBy == 'updated_at' && $order == 'asc') ? 'sorting asc' : 'sorting')) )
+							); ?>
+
+					</th>
+					<th><?php echo trans("messages.global.action"); ?></th>
+				</tr>
+			</thead>
+			<tbody id="powerwidgets">
+				<?php if(!$model->isEmpty()): ?>
+				<?php foreach($model as $record): ?>
+				<tr class="items-inner">
+					<!-- <td data-th=' <?php echo trans("messages.global.select"); ?>'>
+						<?php echo Form::checkbox('status',$record->id,null,['class'=> 'userCheckBox'] ); ?>
+
+					</td> -->
+					<td data-th='<?php echo trans("messages.$modelName.page_name"); ?>'><?php echo $record->name; ?></td>
+					<td data-th='<?php echo trans("messages.$modelName.page_description"); ?>'><?php echo strip_tags(Str::limit($record->body, 300)); ?></td>
+					<td data-th='<?php echo trans("messages.global.status"); ?>'>
+					<?php if($record->is_active	== ACTIVE): ?>
+						<span class="label label-success" ><?php echo trans("messages.global.activated"); ?></span>
+					<?php else: ?>
+						<span class="label label-warning" ><?php echo trans("messages.global.deactivated"); ?></span>
+					<?php endif; ?>
+					</td>
+					<td data-th='<?php echo trans("messages.$modelName.modified"); ?>'>
+					<?php echo date(Config::get("Reading.date_format") , strtotime($record->updated_at)); ?>
+
+					</td>
+					<td data-th='<?php echo trans("messages.global.action"); ?>'>
+						
+						<a href='<?php echo route( "$modelName.edit",$record->id); ?>' class="btn btn-info btn-small"><?php echo trans("messages.global.edit"); ?> </a>
+						
+						<?php if($record->is_active): ?>
+							<a href='<?php echo route("$modelName.status",array($record->id,INACTIVE)); ?>' class="status_user btn btn-warning btn-small"><?php echo trans("messages.global.mark_as_inactive"); ?>
+
+							</a>
+						<?php else: ?>
+							<a href='<?php echo route("$modelName.status",array($record->id,ACTIVE) ); ?>' class="status_user btn btn-success btn-small"><?php echo trans("messages.global.mark_as_active"); ?>
+
+							</a>
+						<?php endif; ?>
+						
+					</td>
+				</tr>
+				 <?php endforeach; ?>
+				 <?php else: ?>
+					<table class="mws-table mws-datatable details">	
+						<tr>
+							<td align="center" width="100%"> <?php echo trans("messages.global.no_record_found_message"); ?></td>
+						</tr>	
+					</table>  
+				<?php endif; ?> 
+			</tbody>
+		</table>
+	</div>
+	<?php echo $__env->make('pagination.default', ['paginator' => $model,'searchVariable'=>$searchVariable], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

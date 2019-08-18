@@ -1,0 +1,131 @@
+<?php $__env->startSection('content'); ?>
+<!-- CKeditor start here-->
+
+<?php echo HTML::style('css/admin/custom_li_bootstrap.css'); ?>
+
+<?php echo HTML::script('js/bootstrap.js'); ?>
+
+<?php echo HTML::script('js/admin/ckeditor/ckeditor.js'); ?>
+
+
+<!-- CKeditor ends-->
+
+<div class="mws-panel grid_8">
+	<div class="mws-panel-header" style="height: 46px;">
+		<span> <?php echo trans("Add New Date Price"); ?> </span>
+		<a href="<?php echo URL::to('admin/list-date-price'); ?>" class="btn btn-success btn-small align"><?php echo trans("messages.system_management.back_to_cms"); ?> </a>
+	</div>
+	
+	<?php echo Form::open(['role' => 'form','url' => 'admin/save-date-price','class' => 'mws-form', 'files' => true]); ?>
+
+	<div class="mws-panel-body no-padding tab-content">
+
+		<div class="mws-form-inline">
+			<div class="mws-form-row ">
+				<?php echo HTML::decode( Form::label('trip_name', trans("Trip Name").'<span class="requireRed"> * </span>', ['class' => 'mws-form-label'])); ?>
+
+				<div class="mws-form-item">
+						<?php echo Form::select(
+							 'trip_name',
+							 [null => 'Please Select Trip Name']+ $tripList,
+							 '',
+							 ['class'=>'small','id'=>'trip_id']
+							); ?>						<div class="error-message help-inline">
+						<?php echo $errors->first('trip_name'); ?>
+					</div>
+				</div>
+			</div>
+
+			<div class="mws-form-row ">
+				<?php echo HTML::decode( Form::label('status_name', trans("Status Name").'<span class="requireRed"> * </span>', ['class' => 'mws-form-label'])); ?>
+
+				<div class="mws-form-item">
+						<?php echo Form::select(
+							 'status_name',
+							 [null => 'Please Select Status Name']+ $statusList,
+							 '',
+							 ['class'=>'small','id'=>'status_id']
+							); ?>						<div class="error-message help-inline">
+						<?php echo $errors->first('status_name'); ?>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="mws-form-row ">
+				<?php echo HTML::decode( Form::label('trip_price', trans("Price").'<span class="requireRed"> * </span>', ['class' => 'mws-form-label'])); ?>
+
+				<div class="mws-form-item">
+					<?php echo Form::text("trip_price",'', ['class' => 'small']); ?>
+
+					<div class="error-message help-inline">
+						<?php echo $errors->first('trip_price'); ?>
+					</div>
+				</div>
+			</div>
+			<div class="mws-form-row ">
+				<?php echo HTML::decode( Form::label('supplement', trans("Supplement").'<span class="requireRed"> * </span>', ['class' => 'mws-form-label'])); ?>
+
+				<div class="mws-form-item">
+					<?php echo Form::text("supplement",'', ['class' => 'small']); ?>
+
+					<div class="error-message help-inline">
+						<?php echo $errors->first('supplement'); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mws-button-row">
+			<div class="input" >
+				<input type="submit" value="<?php echo trans('messages.system_management.save'); ?>" class="btn btn-danger">
+				<a href="<?php echo URL::to('admin/list-date-price/add-date-price'); ?>" class="btn primary"><i class=\"icon-refresh\"></i> <?php echo trans('messages.system_management.reset'); ?></a>
+			</div>
+		</div>
+	</div>
+	<?php echo Form::close(); ?> 
+</div>
+
+<script>
+	$(document).ready(function(){
+
+      	$('#company_id').on('change', function() {
+			var company_id = $(this).val();
+			$.ajax({
+				 url: '<?php echo url('admin/list-date-price/getlocation'); ?>/'+company_id,
+				 type: "get",
+				 dataType: "json",
+                success:function(data) {
+                    $('select[name="company_location"]').empty();
+                    $('select[name="company_location"]').append('<option value="">Please Select Company Location');
+                    $.each(data, function(key, value) {
+
+                        $('select[name="company_location"]').append('<option value="'+ key +'">'+ value +'</option>');
+                    });
+                }
+			})	
+		});
+      	   /* localStorage.setItem('todos', $('#company_id').val());
+      	    test = localStorage.getItem('todos'); 
+      	   // alert(test);
+      	    $('#company_id').val(test);*/
+  	 	var company_id = $('#company_id').val();
+		$.ajax({
+			 url: '<?php echo url('admin/list-date-price/getlocation'); ?>/'+company_id,
+			 type: "get",
+			 dataType: "json",
+            success:function(data) {
+                $('select[name="company_location"]').empty();
+                $('select[name="company_location"]').append('<option value="">Please Select Company Location');
+                $.each(data, function(key, value) {
+
+                    $('select[name="company_location"]').append('<option value="'+ key +'" selected="selected">'+ value +'</option>');
+                });
+            }
+		})	
+	});
+</script>
+
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

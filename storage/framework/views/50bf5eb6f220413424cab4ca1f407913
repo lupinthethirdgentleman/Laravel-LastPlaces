@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><?php echo Config::get("Site.title"); ?></title>
+		<?php echo HTML::style('css/admin/bootstrap.css'); ?>
+
+		<?php echo HTML::style('css/admin/icons/icol16.css'); ?>
+
+		<?php echo HTML::style('css/admin/fonts/icomoon/style.css'); ?>
+
+		<?php echo HTML::style('css/admin/icons/icol32.css'); ?>
+
+		<?php echo HTML::style('css/admin/mws-theme.css'); ?>
+
+		<?php echo HTML::style('css/admin/themer.css'); ?>
+
+		<?php echo HTML::style('css/admin/login.css'); ?>
+
+		<?php echo HTML::script('js/admin/jquery-2.1.1.min.js'); ?>
+
+		<?php echo HTML::script('js/admin/core/mws.js'); ?>
+
+		<script>
+			// for close the message 
+			$(document).ready(function(){
+				$(".close pull-right").click(function(){
+					$(".mws-form-message").hide();
+				})
+			});
+		</script>
+	</head>
+	<body>
+		<?php if(Session::has('flash_notice')): ?>
+		<div class="grid_8 mws-collapsible" style="padding:20px">
+			<div class="mws-form-message success">
+				<a href="javascript:void(0);" class="close pull-right">x</a>
+				<p>
+					<?php echo Session::get('flash_notice'); ?>
+
+				</p>
+			</div>
+		</div>
+		<?php endif; ?>
+		<?php if(Session::has('error')): ?>
+		<div class="grid_8 mws-collapsible" style="padding:20px">
+			<div class="mws-form-message error">
+				<a href="javascript:void(0);" class="close pull-right">x</a>
+				<p>
+					<?php echo Session::get('error'); ?>
+
+				</p>
+			</div>
+		</div>
+		<?php endif; ?>
+		<?php if(Session::has('success')): ?>
+		<div class="grid_8 mws-collapsible" style="padding:20px">
+			<div class="mws-form-message success">
+				<a href="javascript:void(0);" class="close pull-right">x</a>
+				<p>
+					<?php echo Session::get('success'); ?>
+
+				</p>
+			</div>
+		</div>
+		<?php endif; ?>
+		<div id="mws-login-wrapper">
+			<!--
+			<div class="mws-form-row">
+				<img src="<?php echo WEBSITE_URL .'image.php?width=550px&height=180px&image='. WEBSITE_IMG_URL; ?>demo1.jpg">
+			</div>
+			-->
+			<div style="text-align:center;" class="mws-form-row">
+				<span style="font-size:34px;color:rgba(21, 100, 176, 0.9);font-weight:bold;">Last Places</span>
+			</div>
+			<div class="clearfix">&nbsp;</div>
+			<?php echo $__env->yieldContent('content'); ?>
+		</div>
+	</body>
+</html>
+

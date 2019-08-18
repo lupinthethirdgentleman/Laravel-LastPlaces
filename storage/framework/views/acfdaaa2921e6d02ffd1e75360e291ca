@@ -1,0 +1,50 @@
+<?php $__env->startSection('content'); ?>
+ 
+<?php echo HTML::script('js/bootstrap.min.js'); ?>
+
+
+<!-- View user detail div  -->
+<div  class="mws-panel grid_8 mws-collapsible">
+	<div class="mws-panel-header" style="height:8%">
+		<span>
+			<i class="icon-table"></i> <?php echo trans("messages.user_management.user_detail"); ?> 
+		</span>
+			
+			<a href="<?php echo URL::to('admin/users'); ?>" class="btn btn-success btn-small align" style="margin-left:5px"> <?php echo trans("messages.user_management.back"); ?></a>
+			<a href="<?php echo URL::to('admin/users/edit-user/'.$userDetails->id); ?>" class="btn btn-primary btn-small align"><?php echo trans("messages.user_management.edit"); ?></a>
+	</div>
+
+	<div class="mws-panel-body no-padding dataTables_wrapper"> 
+		<table class="mws-table mws-datatable">
+			<tbody>
+				<tr>
+					<th class="text-right" width="30%">Full Name</th>
+					<td data-th='Full Name'><?php echo ucfirst($userDetails->first_name); ?> <?php echo ucfirst($userDetails->last_name); ?></td>
+				</tr>
+				<tr>
+					<th class="text-right" width="30%">Email</th>
+					<td data-th='Email'><a href="mailTo:<?php echo $userDetails->email; ?>"><?php echo $userDetails->email; ?></a></td>
+				</tr>
+				<tr>
+					<th class="text-right" width="30%">Phone</th>
+					<td data-th='Phone'><?php echo $userDetails->phone; ?></td>
+				</tr>
+				<tr>
+					<th class="text-right" width="30%">Created On</th>
+					<td data-th='Created On'><?php echo date(Config::get("Reading.date_format") , strtotime($userDetails->created_at)); ?></td>
+				</tr>
+				
+			</tbody>
+		</table>
+	</div>
+</div>
+<!--View user detail div end here -->
+
+
+
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
