@@ -1047,6 +1047,7 @@
 "destinations"=>"Destinos",
 "photos"=>"Fotos",
 "blog"=>"Blog",
+"news"=>"Proyectos",
 "booking"=>"Reserva",
 "term_condition"=>"Términos y condiciones",
 "about_our_company"=>"Sobre nuestra compañía",

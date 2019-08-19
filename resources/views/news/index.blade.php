@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-offset-4">
-                <h1>News</h1>
+                <h1>Projects</h1>
             </div>
         </div>
     </div>
