@@ -30,16 +30,17 @@ class PhotoGalleryController extends BaseController {
 		if($slug=='tribes'){
 			$query = PhotoCountry::query();
 		}else{
-			$query = PhotoCountryNature::query();
+			$query = PhotoCountryNature::query()->orderByRaw('RAND()');
 		}
 		
 		if(request('country')){
-			$query->where('country_id',request('country'));
+			$query->where('country_id',request('country'))->orderByRaw('RAND()');
 		}
 
 		$photoObj = $query->paginate(15);
+		// print_r($query);exit();
 		
-		$destinationCountry = DestinationCountry::select('id')->with('destinationCountryDescription')->where('active',1)->get();
+		$destinationCountry = DestinationCountry::select('id')->with('destinationCountryDescription')->where('active',1)->orderBy('name','asc')->get();
 	  /* $currentLanguageId 	=	Session::get('currentLanguageId');
 	   $destinationCountry = DB::table('destination_country_description')
 	   							->select('destination_country_description.*','trips.id as tripid',DB::raw('count(trips.id) as totaltrips'),DB::raw('count(photos.id) as totalphoto'))
@@ -63,8 +64,11 @@ class PhotoGalleryController extends BaseController {
 				}else{
 					$photoObjCount = DB::table('photos_country_nature')
 				        ->where('country_id',$country_id_temp)
-				        ->count();
+						->count();
+
 				}
+				// echo($photoObjCount);
+				// exit("0");
 			 $destinationCountry[$i]->destinationCountryDescription[0]->total_images = $photoObjCount;
 		}
 		

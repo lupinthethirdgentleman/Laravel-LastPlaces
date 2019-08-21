@@ -66,13 +66,11 @@ a.list-group-item, button.list-group-item {
                 </div>
                     <h6 class="image-title" style="text-align: center;font-size: 18px;">{{ $listPhotos->title}}</h6>
 
-                </div> <!-- col-6 / end -->
+                </div> 
             @endforeach
           
-         
-          
            
-        </div> <!-- list-group / end -->
+        </div> 
 <?php
 $link_limit = 6; 
 ?>

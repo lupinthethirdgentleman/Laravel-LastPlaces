@@ -61,7 +61,7 @@ class PhotoCountryNatureController extends BaseController
             }
         }
 
-        $sortBy = (Input::get('sortBy')) ? Input::get('sortBy') : 'updated_at';
+        $sortBy = (Input::get('sortBy')) ? Input::get('sortBy') : 'country_id';
         $order  = (Input::get('order')) ? Input::get('order')   : 'DESC';
         $model = $DB->orderBy($sortBy, $order)->with('Country')->groupBy('country_id')->paginate(Config::get("Reading.records_per_page"));
         

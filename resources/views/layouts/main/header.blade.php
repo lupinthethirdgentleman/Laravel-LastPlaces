@@ -9,10 +9,12 @@
             <div class="col-sm-8">
 				<div class="header-top">
                 	<div class="htop_country">
+                    
                     <form method="get" onchange="this.submit()">
+                    <i class="fa fa-globe" aria-hidden="true"></i>
                       <select name="lang">
-                        <option value="en" {{ App::getLocale() == 'en' ? 'selected' : '' }}>ENG</option>
-                        <option value="es" {{ App::getLocale() == 'es' ? 'selected' : '' }}>ESP</option>
+                        <option value="en" {{ App::getLocale() == 'en' ? 'selected' : '' }}>ENGLISH</option>
+                        <option value="es" {{ App::getLocale() == 'es' ? 'selected' : '' }}>ESPAÑOL</option>
                 
                       </select>
                      

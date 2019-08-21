@@ -67,9 +67,10 @@ class DestinationCountryController extends BaseController {
 		$sortBy 	= 	(Input::get('sortBy')) ? Input::get('sortBy') : 'created_at';
 	    $order  	= 	(Input::get('order')) ? Input::get('order')   : 'DESC';
 
-		$result = $DB->orderBy($sortBy, $order)
+		// $result = $DB->orderBy($sortBy, $order)
+		// 			 ->paginate(Config::get("Reading.records_per_page"));
+		$result = $DB->orderBy('name','asc')
 					 ->paginate(Config::get("Reading.records_per_page"));
-
 		//$location_list = DB::table('locations')->lists('Name','id');
 
 
